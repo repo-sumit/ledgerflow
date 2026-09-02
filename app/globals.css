@@ -2,55 +2,39 @@
 @import "tw-animate-css";
 @import "../vendor/shadcn-tailwind-4.13.0.css";
 
-@utility scrollbar-thin {
-  scrollbar-width: thin;
-}
-
-@utility scrollbar-none {
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-@utility scrollbar-gutter-stable {
-  scrollbar-gutter: stable;
-}
-
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0f172a;
   --card: #ffffff;
-  --card-foreground: #171717;
+  --card-foreground: #0f172a;
   --popover: #ffffff;
-  --popover-foreground: #171717;
-  --primary: #171717;
-  --primary-foreground: #fafafa;
-  --secondary: #f5f5f5;
-  --secondary-foreground: #171717;
-  --muted: #f5f5f5;
-  --muted-foreground: #737373;
-  --accent: #f5f5f5;
-  --accent-foreground: #171717;
-  --destructive: #e7000b;
-  --border: #e5e5e5;
-  --input: #e5e5e5;
-  --ring: #a1a1a1;
-  --chart-1: #f54900;
-  --chart-2: #009689;
-  --chart-3: #104e64;
-  --chart-4: #ffb900;
-  --chart-5: #fe9a00;
-  --radius: 0.75rem;
-  --sidebar: #fafafa;
-  --sidebar-foreground: #171717;
-  --sidebar-primary: #171717;
-  --sidebar-primary-foreground: #fafafa;
-  --sidebar-accent: #f5f5f5;
-  --sidebar-accent-foreground: #171717;
-  --sidebar-border: #e5e5e5;
-  --sidebar-ring: #a1a1a1;
+  --popover-foreground: #0f172a;
+  --primary: #0f172a;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+  --destructive: #e11d48;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #64748b;
+  --chart-1: #059669;
+  --chart-2: #d97706;
+  --chart-3: #e11d48;
+  --chart-4: #2563eb;
+  --chart-5: #475569;
+  --radius: 0.625rem;
+  --sidebar: #f8fafc;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #0f172a;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f1f5f9;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #64748b;
 }
 
 @theme inline {
@@ -88,10 +72,9 @@
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 3px);
   --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 body {
@@ -100,89 +83,90 @@ body {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-button, label, input {
+button,
+label,
+input,
+summary {
   -webkit-tap-highlight-color: transparent;
 }
 
+button:focus-visible,
+label:focus-within,
+summary:focus-visible,
+a:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
 @layer components {
-  .surface-card {
-    @apply rounded-2xl border border-slate-200 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.03),0_12px_30px_rgba(15,23,42,0.04)];
-  }
-
-  .metric-card {
-    @apply flex min-h-[112px] items-start justify-between rounded-2xl border border-slate-200 bg-white p-4 shadow-sm;
-  }
-
-  .metric-card p {
-    @apply text-[11px] font-semibold uppercase tracking-wider text-slate-500;
-  }
-
-  .metric-card strong {
-    @apply mt-2 block text-2xl font-bold tracking-tight text-slate-950;
-  }
-
-  .metric-card span {
-    @apply mt-1 block text-xs text-slate-400;
-  }
-
-  .section-kicker {
-    @apply text-[11px] font-bold uppercase tracking-[0.18em] text-indigo-600;
-  }
-
-  .section-title {
-    @apply mt-1 text-lg font-bold tracking-tight text-slate-950;
-  }
-
-  .section-copy {
-    @apply mt-1.5 max-w-xl text-xs leading-5 text-slate-500;
+  .panel {
+    @apply rounded-xl border border-slate-200 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)];
   }
 
   .upload-zone {
-    @apply flex min-h-[210px] cursor-pointer flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50/60 p-6 text-center transition hover:border-indigo-300 hover:bg-indigo-50/40;
+    @apply flex min-h-[170px] cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed border-slate-300 bg-slate-50 p-5 text-center transition-colors hover:border-slate-400 hover:bg-slate-100;
   }
 
   .upload-zone-active {
-    @apply border-indigo-300 bg-indigo-50/40;
+    @apply border-blue-300 bg-blue-50/50;
   }
 
-  .scenario-button {
-    @apply flex min-h-16 items-center gap-3 rounded-xl border border-slate-200 bg-white p-3 transition hover:border-indigo-200 hover:bg-indigo-50/30 disabled:cursor-not-allowed disabled:opacity-50;
+  .demo-cases {
+    @apply mt-5 border-t border-slate-200 pt-4;
   }
 
-  .scenario-button strong {
-    @apply block truncate text-xs font-semibold text-slate-800;
+  .demo-cases summary {
+    @apply flex cursor-pointer list-none items-center justify-between rounded-md py-1 text-sm font-medium text-slate-700;
   }
 
-  .scenario-button small {
-    @apply mt-0.5 block text-[11px] text-slate-500;
+  .demo-cases summary::-webkit-details-marker {
+    display: none;
   }
 
-  .scenario-icon {
-    @apply grid h-8 w-8 shrink-0 place-items-center rounded-lg;
+  .demo-cases[open] summary svg {
+    transform: rotate(180deg);
   }
 
-  .scenario-emerald { @apply bg-emerald-50 text-emerald-600; }
-  .scenario-blue { @apply bg-blue-50 text-blue-600; }
-  .scenario-violet { @apply bg-violet-50 text-violet-600; }
-  .scenario-amber { @apply bg-amber-50 text-amber-600; }
-
-  .live-pill {
-    @apply inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-semibold text-slate-500;
-  }
-
-  .live-pill span {
-    @apply h-1.5 w-1.5 rounded-full bg-slate-400;
-  }
-
-  .live-pill-on {
-    @apply border-indigo-200 bg-indigo-50 text-indigo-700;
-  }
-
-  .live-pill-on span {
-    @apply animate-pulse bg-indigo-500;
+  .demo-case-row {
+    @apply flex w-full items-center justify-between gap-3 px-3 py-2.5 text-left transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50;
   }
 
   .download-link {
-    @apply font-semibold text-indigo-600 underline decoration-indigo-200 underline-offset-2 hover:text-indigo-800;
+    @apply font-medium text-blue-700 hover:underline;
+  }
+
+  .status-label {
+    @apply rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-medium text-slate-500;
+  }
+
+  .status-running {
+    @apply border-blue-200 bg-blue-50 text-blue-700;
+  }
+
+  .metric-cell {
+    @apply min-h-[112px] border-b border-slate-200 p-5 last:border-b-0 sm:border-r sm:[&:nth-child(2n)]:border-r-0 sm:[&:nth-last-child(-n+2)]:border-b-0 lg:border-b-0 lg:[&:nth-child(2n)]:border-r lg:last:border-r-0;
+  }
+
+  .metric-cell p {
+    @apply text-xs text-slate-500;
+  }
+
+  .metric-cell strong {
+    @apply mt-2 block text-2xl font-semibold tracking-tight tabular-nums text-slate-950;
+  }
+
+  .metric-cell span {
+    @apply mt-1 block text-xs text-slate-500;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
